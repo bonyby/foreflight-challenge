@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+.flex {
+  display: flex;
+}
+
+.info-container {
+  width: 300px;
+  flex-direction: column;
+  background-color: rgb(224, 231, 255);
+  margin: 25px;
+  padding-top: 2px;
+}
+
+.info-container p {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgb(247, 251, 255);
+  padding: 10px 10px;
+  margin: 0px;
+  margin-bottom: 2px;
+}

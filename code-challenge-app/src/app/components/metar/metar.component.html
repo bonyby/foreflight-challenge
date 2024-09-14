@@ -1,1 +1,10 @@
-<p>metar works!</p>
+<div class="input-container">
+  <label for="icao">
+    ICAO:
+    <input id="icao" #icaoInput type="text" />
+  </label>
+  <button (click)="Render(icaoInput.value)">SHOW</button>
+</div>
+<div class="flex info-container">
+  <ng-template #metarContainer></ng-template>
+</div>
