@@ -1,7 +1,7 @@
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import TimeHelper from 'src/app/shared/helpers/time-helper';
 import {
-  BaseConditions,
+  BaseConditionsViewModel,
   WeatherReportViewModel,
 } from 'src/app/shared/models/weather-report-model';
 import { WeatherReportService } from 'src/app/shared/services/weather-report.service';
@@ -23,7 +23,9 @@ export abstract class ConditionsComponent {
 
   abstract Render(report: WeatherReportViewModel): void;
 
-  protected RenderBaseConditions(conditions: BaseConditions | undefined) {
+  protected RenderBaseConditions(
+    conditions: BaseConditionsViewModel | undefined
+  ) {
     if (conditions == null) {
       this.CreateBasicInfoBlock(`No conditions found`);
       return;

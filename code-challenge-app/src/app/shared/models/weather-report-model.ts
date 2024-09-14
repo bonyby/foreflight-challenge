@@ -1,102 +1,49 @@
 export interface WeatherReportViewModel {
-  report: Report;
+  conditions: WeatherConditionsViewModel;
+  forecast: WeatherForecastViewModel;
 }
 
-export interface Report {
-  conditions?: WeatherConditions;
-  forecast?: WeatherForecast;
-  windsAloft?: WindsAloft;
-}
-
-export interface BaseConditions {
+export interface BaseConditionsViewModel {
   dateIssued: string;
   text: string;
-  lat: number;
-  lon: number;
   elevationFt: number;
   relativeHumidity: number;
-  flightRules: string;
-  cloudLayers: CloudLayer[];
-  cloudLayersV2: CloudLayer[];
-  weather: string[];
-  visibility: Visibility;
-  wind: Wind;
+  visibility: VisibilityViewModel;
+  wind: WindViewModel;
 }
 
-export interface WeatherConditions extends BaseConditions {
+export interface WeatherConditionsViewModel extends BaseConditionsViewModel {
   ident: string;
   tempC: number;
   pressureHg: number;
-  pressureHpa: number;
-  reportedAsHpa: boolean;
   densityAltitudeFt: number;
   dewpointC: number;
 }
 
-export interface CloudLayer {
-  coverage: string;
-  altitudeFt: number;
-  ceiling: boolean;
-}
-
-export interface Visibility {
+export interface VisibilityViewModel {
   distanceSm: number;
-  distanceQualifier: number;
-  prevailingVisSm: number;
-  prevailingVisDistanceQualifier: number;
 }
 
-export interface Wind {
+export interface WindViewModel {
   speedKts: number;
   direction: number;
-  variableFrom: number;
-  variableTo: number;
-  from: number;
-  to: number;
-  variable: boolean;
 }
 
-export interface WeatherForecast {
+export interface WeatherForecastViewModel {
   text: string;
   ident: string;
   dateIssued: string;
-  period: ForecastPeriod;
-  lat: number;
-  lon: number;
+  period: ForecastPeriodViewModel;
   elevationFt: number;
-  conditions: ForecastCondition[];
+  conditions: ForecastConditionViewModel[];
 }
 
-export interface ForecastPeriod {
+export interface ForecastPeriodViewModel {
   dateStart: string;
   dateEnd: string;
 }
 
-export interface ForecastCondition extends BaseConditions {
+export interface ForecastConditionViewModel extends BaseConditionsViewModel {
   change: string;
-  period: ForecastPeriod;
-}
-
-export interface WindsAloft {
-  lat: number;
-  lon: number;
-  dateIssued: string;
-  windsAloft: WindAloftCondition[];
-}
-
-export interface WindAloftCondition {
-  validTime: string;
-  period: ForecastPeriod;
-  windTemps: Record<string, WindTemp>;
-}
-
-export interface WindTemp {
-  directionFromTrue: number;
-  knots: number;
-  celsius: number;
-  altitude: number;
-  isLightAndVariable: boolean;
-  isGreaterThan199Knots: boolean;
-  turbulence: boolean;
-  icing: boolean;
+  period: ForecastPeriodViewModel;
 }

@@ -22,7 +22,7 @@ namespace WeatherApi.Infrastructure.Clients
 
                 var content = await response.Content.ReadAsStringAsync();
 
-                return JsonSerializer.Deserialize<T>(content);
+                return JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             catch (Exception ex)
             {

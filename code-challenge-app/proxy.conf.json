@@ -1,10 +1,7 @@
 {
-  "/weather/report": {
-    "target":  {
-      "host": "api.foreflight.com",
-      "protocol": "https:"
-    },
-    "secure": true,
+  "/api/report": {
+    "target": "https://localhost:7206",
+    "secure": false,
     "changeOrigin": true,
     "logLevel": "info"
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import TimeHelper from 'src/app/shared/helpers/time-helper';
 import {
-  ForecastCondition,
+  ForecastConditionViewModel,
   WeatherReportViewModel,
 } from 'src/app/shared/models/weather-report-model';
 import { WeatherReportService } from 'src/app/shared/services/weather-report.service';
@@ -20,11 +20,11 @@ export class TafComponent extends ConditionsComponent {
   }
 
   override Render(report: WeatherReportViewModel): void {
-    let conditions = report.report.forecast?.conditions;
+    let conditions = report.forecast?.conditions;
 
     if (conditions == undefined || conditions.length == 0) return;
 
-    this.icao = report.report.conditions?.ident.toUpperCase() ?? '';
+    this.icao = report.conditions?.ident.toUpperCase() ?? '';
 
     this.ClearContainer();
 
@@ -33,7 +33,7 @@ export class TafComponent extends ConditionsComponent {
     });
   }
 
-  private RenderForecastBlock(condition: ForecastCondition) {
+  private RenderForecastBlock(condition: ForecastConditionViewModel) {
     this.RenderBaseConditions(condition);
 
     let fromTime = TimeHelper.FormatTime(condition.period.dateStart);

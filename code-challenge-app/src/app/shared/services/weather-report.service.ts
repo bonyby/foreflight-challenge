@@ -8,7 +8,7 @@ import { WeatherReportViewModel } from '../models/weather-report-model';
 export class WeatherReportService {
   @Output() newReport = new EventEmitter<WeatherReportViewModel>();
 
-  private baseAddress: string = '/weather/report/';
+  private baseAddress: string = '/api/report/';
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
@@ -16,10 +16,6 @@ export class WeatherReportService {
   }
 
   GetNewReport(icao: string) {
-    if (!this.IsValidIcao(icao)) {
-      alert(`${icao} is an invalid ICAO`);
-    }
-
     this.http
       .get<WeatherReportViewModel>(this.baseAddress + icao, {
         headers: this.headers,
@@ -27,10 +23,5 @@ export class WeatherReportService {
       .subscribe({
         next: (report) => this.newReport.emit(report),
       });
-  }
-
-  // *Insert more validation that I know nothing about*
-  private IsValidIcao(icao: string): boolean {
-    return icao.length === 4;
   }
 }

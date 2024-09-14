@@ -17,11 +17,11 @@ export class MetarComponent extends ConditionsComponent {
   }
 
   override Render(report: WeatherReportViewModel) {
-    let conditions = report.report.conditions;
+    let conditions = report.conditions;
 
     if (conditions == null) return;
 
-    this.icao = report.report.conditions?.ident.toUpperCase() ?? '';
+    this.icao = report.conditions?.ident.toUpperCase() ?? '';
 
     this.ClearContainer();
 

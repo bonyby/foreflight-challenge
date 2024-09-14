@@ -5,7 +5,7 @@ using WeatherApi.Application.Services.Report;
 
 namespace WeatherApi.Api.Controllers
 {
-    // TODO: Authentication?
+    // TODO: Authentication? Too lazy for now...
     [Route("api/[controller]")]
     [ApiController]
     public class ReportController : ControllerBase
@@ -29,7 +29,7 @@ namespace WeatherApi.Api.Controllers
         {
             _logger.LogInformation($"Started fetching report for ICAO {icao}");
 
-            var report = await _reportService.GetReport(icao);
+            var report = await _reportService.GetReport(icao.Trim());
 
             if (report == null)
             {
