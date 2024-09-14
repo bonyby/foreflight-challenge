@@ -17,18 +17,11 @@ export abstract class ConditionsComponent {
   @ViewChild('conditionsContainer', { read: ViewContainerRef })
   container!: ViewContainerRef;
 
-  constructor(private weatherReportService: WeatherReportService) {}
-
-  Render(icao: string) {
-    this.weatherReportService.GetReport(icao).subscribe({
-      next: (report) => {
-        this.ClearContainer();
-        this.RenderInternal(report);
-      },
-    });
+  constructor(weatherReportService: WeatherReportService) {
+    weatherReportService.newReport.subscribe((report) => this.Render(report));
   }
 
-  abstract RenderInternal(report: WeatherReportViewModel): void;
+  abstract Render(report: WeatherReportViewModel): void;
 
   protected RenderBaseConditions(conditions: BaseConditions | undefined) {
     if (conditions == null) {

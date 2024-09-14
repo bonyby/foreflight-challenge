@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import TemperatureHelper from 'src/app/shared/helpers/temperature-helper';
 import { WeatherReportViewModel } from 'src/app/shared/models/weather-report-model';
 import { WeatherReportService } from 'src/app/shared/services/weather-report.service';
@@ -9,22 +9,21 @@ import { ConditionsComponent } from '../conditions/conditions.component';
   templateUrl: './metar.component.html',
   styleUrls: ['./metar.component.scss'],
 })
-export class MetarComponent extends ConditionsComponent implements OnInit {
-  @ViewChild('conditions', { read: ConditionsComponent })
-  conditionsComponent!: ConditionsComponent;
+export class MetarComponent extends ConditionsComponent {
+  icao: string = '';
 
   constructor(weatherReportService: WeatherReportService) {
     super(weatherReportService);
   }
 
-  ngOnInit(): void {
-    this.Render('EKOD');
-  }
-
-  override RenderInternal(report: WeatherReportViewModel) {
+  override Render(report: WeatherReportViewModel) {
     let conditions = report.report.conditions;
 
     if (conditions == null) return;
+
+    this.icao = report.report.conditions?.ident.toUpperCase() ?? '';
+
+    this.ClearContainer();
 
     this.RenderBaseConditions(conditions);
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import TimeHelper from 'src/app/shared/helpers/time-helper';
 import {
   ForecastCondition,
@@ -12,22 +12,21 @@ import { ConditionsComponent } from '../conditions/conditions.component';
   templateUrl: './taf.component.html',
   styleUrls: ['./taf.component.scss'],
 })
-export class TafComponent extends ConditionsComponent implements OnInit {
-  @ViewChild('conditions', { read: ConditionsComponent })
-  conditions!: ConditionsComponent;
+export class TafComponent extends ConditionsComponent {
+  icao: string = '';
 
   constructor(weatherReportService: WeatherReportService) {
     super(weatherReportService);
   }
 
-  ngOnInit(): void {
-    this.Render('EHAM');
-  }
-
-  override RenderInternal(report: WeatherReportViewModel): void {
+  override Render(report: WeatherReportViewModel): void {
     let conditions = report.report.forecast?.conditions;
 
     if (conditions == undefined || conditions.length == 0) return;
+
+    this.icao = report.report.conditions?.ident.toUpperCase() ?? '';
+
+    this.ClearContainer();
 
     conditions.forEach((condition) => {
       this.RenderForecastBlock(condition);

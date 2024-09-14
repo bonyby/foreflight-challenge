@@ -1,10 +1,7 @@
-<div class="input-container">
-  <label for="icao">
-    ICAO:
-    <input id="icao" #icaoInput type="text" />
-  </label>
-  <button (click)="Render(icaoInput.value)">SEARCH</button>
-</div>
 <div class="flex info-container">
+  <h1>
+    TAF <br />
+    <span>{{ icao }}</span>
+  </h1>
   <ng-template #conditionsContainer></ng-template>
 </div>

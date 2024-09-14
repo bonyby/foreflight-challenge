@@ -10,6 +10,8 @@ import { MetarComponent } from './components/metar/metar.component';
 import { NamedInfoBlockComponent } from './components/named-info-block/named-info-block.component';
 import { TafComponent } from './components/taf/taf.component';
 import { WeatherComponent } from './components/weather/weather.component';
+import { FullComponent } from './components/full/full.component';
+import { IcaoInputComponent } from './components/icao-input/icao-input.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { WeatherComponent } from './components/weather/weather.component';
     NamedInfoBlockComponent,
     BasicInfoBlockComponent,
     TafComponent,
+    FullComponent,
+    IcaoInputComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
