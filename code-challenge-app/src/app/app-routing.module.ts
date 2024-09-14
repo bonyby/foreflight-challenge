@@ -5,10 +5,10 @@ import { MetarComponent } from './components/metar/metar.component';
 import { TafComponent } from './components/taf/taf.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'weather/metar', pathMatch: 'full' },
+  { path: '', redirectTo: 'weather/full', pathMatch: 'full' },
+  { path: 'weather/full', component: FullComponent },
   { path: 'weather/metar', component: MetarComponent },
   { path: 'weather/taf', component: TafComponent },
-  { path: 'weather/full', component: FullComponent },
 ];
 
 @NgModule({
