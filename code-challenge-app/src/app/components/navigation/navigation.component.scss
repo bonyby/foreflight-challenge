@@ -1,0 +1,18 @@
+div {
+  width: 300px;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  margin-bottom: 25px;
+}
+
+a {
+  width: 100%;
+  background-color: var(--secondary-color);
+  text-align: center;
+  padding: 10px;
+  font-size: 1.25rem;
+}
+
+a:hover {
+  background-color: var(--primary-color);
+}

@@ -12,6 +12,7 @@ import { TafComponent } from './components/taf/taf.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { FullComponent } from './components/full/full.component';
 import { IcaoInputComponent } from './components/icao-input/icao-input.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { IcaoInputComponent } from './components/icao-input/icao-input.component
     TafComponent,
     FullComponent,
     IcaoInputComponent,
+    NavigationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

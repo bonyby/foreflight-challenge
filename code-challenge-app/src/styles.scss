@@ -1,3 +1,8 @@
+:root {
+  --primary-color: rgb(224, 231, 255);
+  --secondary-color: rgb(247, 251, 255);
+}
+
 .flex {
   display: flex;
 }
@@ -5,7 +10,7 @@
 .info-container {
   width: 300px;
   flex-direction: column;
-  background-color: rgb(224, 231, 255);
+  background-color: var(--primary-color);
   margin: 25px;
   padding-top: 2px;
 }
@@ -13,7 +18,7 @@
 .info-container p {
   box-sizing: border-box;
   width: 100%;
-  background-color: rgb(247, 251, 255);
+  background-color: var(--secondary-color);
   padding: 10px 10px;
   margin: 0px;
   margin-bottom: 2px;
