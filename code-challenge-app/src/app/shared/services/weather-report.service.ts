@@ -25,7 +25,7 @@ export class WeatherReportService {
       })
       .subscribe({
         next: (report) => this.newReport.emit(report),
-        error: (_) => alert('Invalid ICAO'),
+        error: (error) => alert(error.message),
       });
   }
 }

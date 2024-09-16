@@ -14,6 +14,7 @@ import { FullComponent } from './components/full/full.component';
 import { IcaoInputComponent } from './components/icao-input/icao-input.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoadingReportComponent } from './components/loading-report/loading-report.component';
+import { ReportLookupHistoryComponent } from './components/report-lookup-history/report-lookup-history.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LoadingReportComponent } from './components/loading-report/loading-repo
     IcaoInputComponent,
     NavigationComponent,
     LoadingReportComponent,
+    ReportLookupHistoryComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

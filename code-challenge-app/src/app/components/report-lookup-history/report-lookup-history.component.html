@@ -1,0 +1,6 @@
+<div class="flex lookup-container">
+  <p>Lookup History:</p>
+  <button *ngFor="let icao of lookupHistory" (click)="IcaoClicked(icao)">
+    {{ icao.toUpperCase() }}
+  </button>
+</div>
