@@ -9,8 +9,8 @@ namespace WeatherApi.Application.Mappers
         {
             return new ReportModel
             {
-                Conditions = MapToWeatherConditions(report.Report.Conditions),
-                Forecast = MapToWeatherForecast(report.Report.Forecast),
+                Conditions = MapToWeatherConditions(report.Report?.Conditions),
+                Forecast = MapToWeatherForecast(report.Report?.Forecast),
             };
         }
 
