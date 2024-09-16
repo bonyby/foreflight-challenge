@@ -4,6 +4,15 @@
     { 
         public WeatherConditions Conditions { get; set; }
         public WeatherForecast Forecast { get; set; }
+
+        public NearbyReport NearbyReportStatus { get; set; }
+    }
+
+    public class NearbyReport
+    {
+        public bool IsFromNearbyAirport { get; set; }
+
+        public string OriginalIcao { get; set; }
     }
 
     public class BaseConditions

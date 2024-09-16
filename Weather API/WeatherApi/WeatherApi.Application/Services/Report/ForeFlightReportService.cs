@@ -37,11 +37,31 @@ namespace WeatherApi.Application.Services.Report
 
             if (report == null)
             {
-                _logger.LogInformation($"ForeFlight API yielded no result for ICAO {icao}");
-                return null;
+                _logger.LogInformation($"ForeFlight API yielded no result for ICAO {icao}. Trying to fetch report from nearby airport");
+                return await TryGetReportFromNearbyAirport(icao);
             }
 
             return _foreFlightReportMapper.Map(report);
+        }
+
+        private async Task<ReportModel?> TryGetReportFromNearbyAirport(string icao)
+        {
+            var report = await _foreFlightClient.GetReportFromNearbyAirport(icao);
+
+            if (report == null)
+            {
+                return null;
+            }
+
+            var result = _foreFlightReportMapper.Map(report);
+
+            result.NearbyReportStatus = new NearbyReport
+            {
+                IsFromNearbyAirport = true,
+                OriginalIcao = icao
+            };
+
+            return result;
         }
     }
 }

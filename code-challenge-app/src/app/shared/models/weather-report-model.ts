@@ -1,6 +1,12 @@
 export interface WeatherReportViewModel {
   conditions: WeatherConditionsViewModel;
   forecast: WeatherForecastViewModel;
+  nearbyReportStatus: NearbyReportViewModel;
+}
+
+export interface NearbyReportViewModel {
+  isFromNearbyAirport: boolean;
+  originalIcao: string;
 }
 
 export interface BaseConditionsViewModel {

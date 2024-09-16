@@ -4,6 +4,16 @@
     {
         public WeatherConditionsViewModel Conditions { get; set; }
         public WeatherForecastViewModel Forecast { get; set; }
+
+        public NearbyReportViewModel NearbyReportStatus { get; set; }
+
+    }
+
+    public class NearbyReportViewModel
+    {
+        public bool IsFromNearbyAirport { get; set; }
+
+        public string OriginalIcao { get; set; }
     }
 
     public class BaseConditionsViewModel

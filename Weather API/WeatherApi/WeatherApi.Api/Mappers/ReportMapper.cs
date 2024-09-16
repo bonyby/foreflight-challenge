@@ -10,7 +10,8 @@ namespace WeatherApi.Api.Mappers
             return new WeatherReportViewModel
             {
                 Conditions = MapToConditionsViewModel(report.Conditions),
-                Forecast = MapToForecastViewModel(report.Forecast)
+                Forecast = MapToForecastViewModel(report.Forecast),
+                NearbyReportStatus =MapToNearbyReportViewModel(report.NearbyReportStatus)
             };
         }
 
@@ -46,6 +47,17 @@ namespace WeatherApi.Api.Mappers
                 Period = MapToForecastPeriodViewModel(source.Period),
                 ElevationFt = source.ElevationFt,
                 Conditions = source.Conditions?.Select(MapToForecastConditionViewModel).ToList()
+            };
+        }
+
+        private NearbyReportViewModel MapToNearbyReportViewModel(NearbyReport source)
+        {
+            if (source == null) return null;
+
+            return new NearbyReportViewModel
+            {
+                IsFromNearbyAirport = source.IsFromNearbyAirport,
+                OriginalIcao = source.OriginalIcao,
             };
         }
 

@@ -19,6 +19,11 @@ export class MetarComponent extends ConditionsComponent {
 
     if (conditions == null) return;
 
+    if (report.nearbyReportStatus?.isFromNearbyAirport === true) {
+      var nearbyReportNotice = `NOTE: No report found for ${report.nearbyReportStatus.originalIcao.toUpperCase()}. Showing report for nearby ${conditions.ident.toUpperCase()} instead.`;
+      this.CreateBasicInfoBlock(nearbyReportNotice);
+    }
+
     this.RenderBaseConditions(conditions);
 
     this.CreateNamedInfoBlock('ICAO', conditions.ident.toUpperCase());

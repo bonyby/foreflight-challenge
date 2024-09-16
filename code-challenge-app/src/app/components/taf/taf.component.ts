@@ -22,6 +22,11 @@ export class TafComponent extends ConditionsComponent {
 
     if (conditions == undefined || conditions.length == 0) return;
 
+    if (report.nearbyReportStatus?.isFromNearbyAirport === true) {
+      var nearbyReportNotice = `NOTE: No report found for ${report.nearbyReportStatus.originalIcao.toUpperCase()}. Showing report for nearby ${report.forecast.ident.toUpperCase()} instead.`;
+      this.CreateBasicInfoBlock(nearbyReportNotice);
+    }
+
     conditions.forEach((condition) => {
       this.RenderForecastBlock(condition);
     });

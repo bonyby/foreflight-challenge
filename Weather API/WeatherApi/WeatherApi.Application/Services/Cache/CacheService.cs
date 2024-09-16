@@ -17,7 +17,15 @@ namespace WeatherApi.Application.Services.Cache
             {
                 entry.AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(lifeTimeMinutes);
 
-                return entityFactory.Invoke();
+                var entity = entityFactory.Invoke();
+
+                if (entity == null)
+                {
+                    entry.AbsoluteExpiration = DateTimeOffset.Now;
+                    return null;
+                }
+
+                return entity;
             });
 
             return entity;
