@@ -17,8 +17,18 @@ export abstract class ConditionsComponent {
   @ViewChild('conditionsContainer', { read: ViewContainerRef })
   container!: ViewContainerRef;
 
+  icao: string = '';
+
   constructor(weatherReportService: WeatherReportService) {
-    weatherReportService.newReport.subscribe((report) => this.Render(report));
+    weatherReportService.fetchingReport.subscribe((icao) => {
+      this.icao = icao.toUpperCase();
+      this.ClearContainer();
+    });
+
+    weatherReportService.newReport.subscribe((report) => {
+      this.icao = report.conditions.ident.toUpperCase();
+      this.Render(report);
+    });
   }
 
   abstract Render(report: WeatherReportViewModel): void;

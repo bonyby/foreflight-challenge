@@ -13,6 +13,7 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { FullComponent } from './components/full/full.component';
 import { IcaoInputComponent } from './components/icao-input/icao-input.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { LoadingReportComponent } from './components/loading-report/loading-report.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FullComponent,
     IcaoInputComponent,
     NavigationComponent,
+    LoadingReportComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

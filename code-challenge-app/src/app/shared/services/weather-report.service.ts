@@ -6,6 +6,7 @@ import { WeatherReportViewModel } from '../models/weather-report-model';
   providedIn: 'root',
 })
 export class WeatherReportService {
+  @Output() fetchingReport = new EventEmitter<string>();
   @Output() newReport = new EventEmitter<WeatherReportViewModel>();
 
   private baseAddress: string = '/api/report/';
@@ -16,12 +17,15 @@ export class WeatherReportService {
   }
 
   GetNewReport(icao: string) {
+    this.fetchingReport.emit(icao);
+
     this.http
       .get<WeatherReportViewModel>(this.baseAddress + icao, {
         headers: this.headers,
       })
       .subscribe({
         next: (report) => this.newReport.emit(report),
+        error: (_) => alert('Invalid ICAO'),
       });
   }
 }

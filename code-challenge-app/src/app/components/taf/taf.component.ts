@@ -13,8 +13,6 @@ import { ConditionsComponent } from '../conditions/conditions.component';
   styleUrls: ['./taf.component.scss'],
 })
 export class TafComponent extends ConditionsComponent {
-  icao: string = '';
-
   constructor(weatherReportService: WeatherReportService) {
     super(weatherReportService);
   }
@@ -23,10 +21,6 @@ export class TafComponent extends ConditionsComponent {
     let conditions = report.forecast?.conditions;
 
     if (conditions == undefined || conditions.length == 0) return;
-
-    this.icao = report.conditions?.ident.toUpperCase() ?? '';
-
-    this.ClearContainer();
 
     conditions.forEach((condition) => {
       this.RenderForecastBlock(condition);

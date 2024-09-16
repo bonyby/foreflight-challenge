@@ -2,6 +2,7 @@
 using WeatherApi.Api.Mappers;
 using WeatherApi.Application.Clients;
 using WeatherApi.Application.Mappers;
+using WeatherApi.Application.Services.Cache;
 using WeatherApi.Application.Services.Report;
 using WeatherApi.Infrastructure.Clients;
 
@@ -9,7 +10,7 @@ namespace WeatherApi.Api.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration)
+        public static void RegisterServiceDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             RegisterMappers(services);
             RegisterServices(services);
@@ -25,6 +26,7 @@ namespace WeatherApi.Api.Extensions
         private static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<IReportService, ForeFlightReportService>();
+            services.AddScoped<ICacheService, CacheService>();
         }
 
         private static void RegisterClients(IServiceCollection services, IConfiguration configuration)

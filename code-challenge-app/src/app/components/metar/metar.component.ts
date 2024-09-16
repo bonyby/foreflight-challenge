@@ -10,8 +10,6 @@ import { ConditionsComponent } from '../conditions/conditions.component';
   styleUrls: ['./metar.component.scss'],
 })
 export class MetarComponent extends ConditionsComponent {
-  icao: string = '';
-
   constructor(weatherReportService: WeatherReportService) {
     super(weatherReportService);
   }
@@ -20,10 +18,6 @@ export class MetarComponent extends ConditionsComponent {
     let conditions = report.conditions;
 
     if (conditions == null) return;
-
-    this.icao = report.conditions?.ident.toUpperCase() ?? '';
-
-    this.ClearContainer();
 
     this.RenderBaseConditions(conditions);
 

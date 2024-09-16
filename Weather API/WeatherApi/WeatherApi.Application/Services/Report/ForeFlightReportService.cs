@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using WeatherApi.Application.Clients;
 using WeatherApi.Application.Mappers;
+using WeatherApi.Application.Services.Cache;
 using WeatherApi.Domain.Helper;
 using WeatherApi.Domain.Models;
 
@@ -11,12 +12,14 @@ namespace WeatherApi.Application.Services.Report
         private readonly IForeFlightClient _foreFlightClient;
         private readonly ILogger<ForeFlightReportService> _logger;
         private readonly IForeFlightReportMapper _foreFlightReportMapper;
+        private readonly ICacheService _cacheService;
 
-        public ForeFlightReportService(IForeFlightClient foreFlightClient, ILogger<ForeFlightReportService> logger, IForeFlightReportMapper foreFlightReportMapper)
+        public ForeFlightReportService(IForeFlightClient foreFlightClient, ILogger<ForeFlightReportService> logger, IForeFlightReportMapper foreFlightReportMapper, ICacheService cacheService)
         {
             _foreFlightClient = foreFlightClient;
             _logger = logger;
             _foreFlightReportMapper = foreFlightReportMapper;
+            _cacheService = cacheService;
         }
 
         public async Task<ReportModel?> GetReport(string icao)
@@ -27,7 +30,10 @@ namespace WeatherApi.Application.Services.Report
                 return null;
             }
 
-            var report = await _foreFlightClient.GetReport(icao);
+            // Possible update: Could set lifetime to be dependent on expiration date of report
+            var report = await _cacheService.GetOrCreate(icao.ToLower(),
+                () => _foreFlightClient.GetReport(icao),
+                lifeTimeMinutes: 15);
 
             if (report == null)
             {

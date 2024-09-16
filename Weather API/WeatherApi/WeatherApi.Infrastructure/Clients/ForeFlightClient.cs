@@ -10,6 +10,9 @@ namespace WeatherApi.Infrastructure.Clients
 
         public async Task<ForeFlightReportModel?> GetReport(string icao)
         {
+            // Simulating slow API
+            await Task.Delay(2000);
+
             var path = $"/weather/report/{icao}";
 
             var response = await Get<ForeFlightReportModel>(path);
